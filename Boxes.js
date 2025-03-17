@@ -38,6 +38,7 @@
 // LookAtTrianglesWithKeys.js
 // TexturedQuad.js
 // Vertex shader program
+
 var VSHADER_SOURCE = null;
 // Fragment shader program
 var FSHADER_SOURCE = null;
@@ -50,7 +51,7 @@ var LAST_FRAME = Date.now();
 var VAO;
 
 // Number of boxes
-const N_BOXES = 128;
+const N_BOXES = 16;
 
 function main() {
   // Retrieve <canvas> element
@@ -272,10 +273,10 @@ function draw(gl, n, currentAngle, axisAngle, u_rot_matrix) {
   gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, elementBuffer );
   // primitive restart cannot be enabled - it is always on
   // gl.enable(gl.PRIMITIVE_RESTART);
-  gl.drawElementsInstanced(gl.TRIANGLE_STRIP, n, gl.UNSIGNED_BYTE, 0, N_BOXES);
+  gl.drawElementsInstanced(gl.TRIANGLES, n, gl.UNSIGNED_SHORT, 0, N_BOXES);
 
   // Draw the rectangle
-  // gl.drawArrays(gl.TRIANGLES, 0, n);
+   //gl.drawArrays(gl.TRIANGLES, 0, n);
 }
 
 
@@ -311,3 +312,4 @@ function faster() {
 function slower() {
   SPEED -= 2;
 }
+
