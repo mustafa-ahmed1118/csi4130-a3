@@ -33,10 +33,11 @@
 #endif
 
 
-in vec3 v_color;
+in vec4 v_color;
 out vec4 frag_color;
 
 void main() {
   // Pass on the fragment color to the frame buffer
-  frag_color = vec4(v_color,1.0);
+  frag_color = v_color;
 }
+
