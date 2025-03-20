@@ -24,6 +24,19 @@
 // Revision 1.2  2019/02/14 0
 // ==========================================================================
 
+async function fileReaderFunction(filepath, ArrayType = Float32Array) {
+    const response = await fetch(filepath);
+
+    if (!response.ok) {
+        console.error(`Error retrieving file: ${filepath}`);
+        return new ArrayType([]); // Return an empty array to avoid undefined issues
+    }
+
+    const text = await response.text();
+    const data = text.trim().split("\n").flatMap(line => line.trim().split(/\s+/).map(Number));
+
+    return new ArrayType(data);
+}
 
 // Constructor
 function BoxShape(attributes) {
